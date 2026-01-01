@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SkillBridge | Upload Resume</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-slate-900 text-white min-h-screen">
+
+  <div class="p-6 max-w-xl mx-auto">
+    <h1 class="text-3xl font-bold mb-2">Upload Resume</h1>
+    <p class="text-slate-400 mb-6">
+      Upload your resume (PDF) to analyze your skills
+    </p>
+
+    <!-- Upload box -->
+    <div class="bg-slate-800 p-6 rounded-lg">
+      <label class="block mb-2 font-semibold">
+        Select Resume (PDF only)
+      </label>
+
+      <input
+        type="file"
+        id="resume"
+        accept=".pdf"
+        class="mb-4 text-slate-300"
+      />
+
+      <button
+        onclick="uploadResume()"
+        class="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded font-semibold"
+      >
+        Upload Resume
+      </button>
+
+      <p id="status" class="mt-4 text-slate-300"></p>
+    </div>
+
+    <!-- Back link -->
+    <div class="mt-6">
+      <a href="dashboard.html" class="text-blue-400 hover:underline">
+        ← Back to Dashboard
+      </a>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
