@@ -1,0 +1,13 @@
+# Python virtual environment
+venv/
+backend/venv/
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# Environment files
+.env
+
+# Firebase secret key
+backend/serviceAccountKey.json

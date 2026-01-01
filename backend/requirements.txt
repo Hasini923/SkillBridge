@@ -1,0 +1,4 @@
+flask
+firebase-admin
+pdfplumber
+python-dotenv
