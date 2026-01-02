@@ -7,19 +7,28 @@
 
 <body class="bg-slate-900 text-white min-h-screen">
 
-  <!-- Page container -->
-  <div class="p-6 max-w-5xl mx-auto">
+  <!-- NAVBAR -->
+  <nav class="bg-slate-800 px-6 py-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold">SkillBridge</h1>
+
+    <div class="space-x-6">
+      <a href="dashboard.html" class="hover:text-blue-400">Dashboard</a>
+      <a href="upload.html" class="hover:text-blue-400">Resume</a>
+      <a href="analysis.html" class="hover:text-blue-400">Analysis</a>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <div class="p-6 max-w-6xl mx-auto">
 
     <!-- Header -->
-    <div class="mb-8">
-      <h1 class="text-3xl font-bold">Skill Analysis</h1>
-      <p class="text-slate-400">
-        Analyze your resume and see how close you are to your target career
-      </p>
-    </div>
+    <h1 class="text-3xl font-bold mb-2">Skill Analysis</h1>
+    <p class="text-slate-400 mb-6">
+      See your skills, gaps, and how close you are to your target career
+    </p>
 
-    <!-- Career selection -->
-    <div class="bg-slate-800 p-6 rounded-lg mb-6">
+    <!-- Career Selection -->
+    <div class="bg-slate-800 p-6 rounded-lg mb-8">
       <label class="block mb-2 font-semibold">
         Select Target Career
       </label>
@@ -41,14 +50,14 @@
       </button>
     </div>
 
-    <!-- Results grid -->
+    <!-- RESULTS GRID -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
       <!-- Skills -->
       <div class="bg-slate-800 p-6 rounded-lg">
         <h2 class="text-xl font-bold mb-2">Your Skills</h2>
         <p id="skills" class="text-slate-300">
-          Upload and analyze your resume to see your skills
+          Your extracted skills will appear here
         </p>
       </div>
 
@@ -76,13 +85,6 @@
         </p>
       </div>
 
-    </div>
-
-    <!-- Back link -->
-    <div class="mt-8">
-      <a href="dashboard.html" class="text-blue-400 hover:underline">
-        ← Back to Dashboard
-      </a>
     </div>
 
   </div>
