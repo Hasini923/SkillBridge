@@ -1,0 +1,144 @@
+.skillbridge-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  animation: logoFadeIn 0.6s ease;
+}
+
+@keyframes logoFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.logo-icon {
+  position: relative;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Book animations */
+.book-pages {
+  animation: pageGlow 2s ease-in-out infinite;
+}
+
+@keyframes pageGlow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.book-left {
+  transform-origin: center;
+  animation: pageFlipLeft 4s ease-in-out infinite;
+}
+
+@keyframes pageFlipLeft {
+  0%, 100% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(-5deg);
+  }
+}
+
+.book-right {
+  transform-origin: center;
+  animation: pageFlipRight 4s ease-in-out infinite;
+}
+
+@keyframes pageFlipRight {
+  0%, 100% {
+    transform: rotateY(0deg);
+  }
+  50% {
+    transform: rotateY(5deg);
+  }
+}
+
+/* Cap animations */
+.cap-group {
+  animation: capBounce 2s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes capBounce {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-3px) rotate(-2deg);
+  }
+}
+
+.tassel {
+  animation: tasselSwing 1.5s ease-in-out infinite;
+  transform-origin: 100px 40px;
+}
+
+@keyframes tasselSwing {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+}
+
+/* Logo Text */
+.logo-text {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-align: center;
+  line-height: 1;
+}
+
+.logo-skill {
+  background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+}
+
+.logo-bridge {
+  background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: inline-block;
+}
+
+/* Hover effect */
+.skillbridge-logo:hover .logo-icon {
+  animation: float 1s ease-in-out infinite;
+}
+
+.skillbridge-logo:hover .cap-group {
+  animation: capBounce 1s ease-in-out infinite;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .skillbridge-logo {
+    gap: 8px;
+  }
+}
