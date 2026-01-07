@@ -3,7 +3,7 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { auth, db } from './firebaseConfig';
 import { collection, query, where, getDocs, addDoc, serverTimestamp } from 'firebase/firestore';
 import { Login, LogoutButton } from './Auth';
-import { Logo } from './Logo';
+// Remove unused Logo import
 import { ResumeBuilder } from './ResumeBuilder';
 import { SkillsEditor } from './SkillsEditor';
 import { ResumeManager } from './ResumeManager';
@@ -28,7 +28,7 @@ export default function App() {
   
   // Resume data
   const [resumeText, setResumeText] = useState('');
-  const [resumeSource, setResumeSource] = useState('');
+  // Remove unused resumeSource
   const [uploadCount, setUploadCount] = useState(0);
   
   // Skills data
@@ -39,8 +39,7 @@ export default function App() {
     languages: []
   });
   
-  // Target role
-  const [targetRole, setTargetRole] = useState('');
+  // Remove unused targetRole - we only need it in analysisData
   
   // Analysis results
   const [analysisData, setAnalysisData] = useState(null);
@@ -230,7 +229,6 @@ export default function App() {
       console.log(`Extracted ${text.length} characters`);
       
       setResumeText(text);
-      setResumeSource('pdf');
       await saveResumeToFirebase(text, 'pdf');
       await extractSkillsFromResume(text);
       setCurrentScreen('skills');
@@ -244,7 +242,6 @@ export default function App() {
     try {
       console.log('Processing manually built resume...');
       setResumeText(text);
-      setResumeSource('manual');
       await saveResumeToFirebase(text, 'manual');
       await extractSkillsFromResume(text);
       setCurrentScreen('skills');
@@ -316,7 +313,6 @@ export default function App() {
 
       const data = await response.json();
       setAnalysisData(data);
-      setTargetRole(role);
       await saveAnalysisToFirebase(data);
       setCurrentScreen('analysis');
       console.log('Analysis complete!');

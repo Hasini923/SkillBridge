@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { X, Trash2, Calendar, Target, TrendingUp, BookOpen, Loader } from 'lucide-react';
 import { db } from './firebaseConfig';
 import { collection, query, where, getDocs, deleteDoc, doc } from 'firebase/firestore';
@@ -10,11 +10,7 @@ export function SavedRoadmaps({ userId, onClose, onViewRoadmap }) {
   const [error, setError] = useState('');
   const [deleting, setDeleting] = useState(null);
 
-  useEffect(() => {
-    fetchRoadmaps();
-  }, [userId]);
-
-  const fetchRoadmaps = async () => {
+  const fetchRoadmaps = useCallback(async () => {
     try {
       setLoading(true);
       setError('');
@@ -51,7 +47,11 @@ export function SavedRoadmaps({ userId, onClose, onViewRoadmap }) {
     } finally {
       setLoading(false);
     }
-  };
+  }, [userId]);
+
+  useEffect(() => {
+    fetchRoadmaps();
+  }, [fetchRoadmaps]);
 
   const handleDelete = async (roadmapId) => {
     if (!window.confirm('Are you sure you want to delete this roadmap? This action cannot be undone.')) {

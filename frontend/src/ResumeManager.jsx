@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Trash2, FileText, Calendar, Loader } from 'lucide-react';
 import './ResumeManager.css';
 
@@ -20,15 +20,10 @@ export function ResumeManager({ userId, onClose, onResumeDeleted }) {
   const [deleting, setDeleting] = useState(null);
   const [error, setError] = useState('');
 
-  // Fetch resumes when component mounts
-  useEffect(() => {
-    fetchResumes();
-  }, [userId]);
-
   /**
    * Fetch all resumes for the current user
    */
-  const fetchResumes = async () => {
+  const fetchResumes = useCallback(async () => {
     try {
       setLoading(true);
       setError('');
@@ -49,7 +44,12 @@ export function ResumeManager({ userId, onClose, onResumeDeleted }) {
     } finally {
       setLoading(false);
     }
-  };
+  }, [userId]);
+
+  // Fetch resumes when component mounts
+  useEffect(() => {
+    fetchResumes();
+  }, [fetchResumes]);
 
   /**
    * Delete a resume after user confirmation
@@ -127,7 +127,7 @@ export function ResumeManager({ userId, onClose, onResumeDeleted }) {
    * @returns {string} Formatted label
    */
   const getSourceLabel = (source) => {
-    return source === 'pdf' ? '📄 PDF Upload' : '✍️ Manual Build';
+    return source === 'pdf' ? '📄 PDF Upload' : '✏️ Manual Build';
   };
 
   /**
