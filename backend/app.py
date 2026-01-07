@@ -302,7 +302,8 @@ ROLE_SKILL_MAP = {
 
 # ================== FIREBASE ==================
 try:
-    cred = credentials.Certificate("serviceAccountKey.json")
+    service_account_info = json.loads(os.environ["FIREBASE_SERVICE_ACCOUNT"])
+    cred = credentials.Certificate(service_account_info)
     initialize_app(cred)
     db = firestore.client()
     print("✅ Firebase initialized")
