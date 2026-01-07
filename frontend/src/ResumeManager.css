@@ -1,0 +1,767 @@
+/* ==================== RESUME MANAGER STYLES ==================== */
+/* Complete styling for the Resume Manager modal component */
+/* Author: SkillBridge Team */
+/* Last Updated: 2024 */
+
+/* ==================== OVERLAY BACKGROUND ==================== */
+
+/**
+ * Full screen overlay that darkens background when modal is open
+ * Fixed positioning covers entire viewport
+ * Fade in animation on mount
+ */
+.resume-manager-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  animation: overlayFadeIn 0.3s ease;
+  backdrop-filter: blur(2px);
+}
+
+@keyframes overlayFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ==================== MODAL CONTAINER ==================== */
+
+/**
+ * Main modal dialog container
+ * White background, rounded corners, shadow
+ * Flexbox column layout for header/content/footer
+ * Slide up animation on mount
+ */
+.resume-manager-modal {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 600px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: modalSlideUp 0.3s ease;
+}
+
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==================== MODAL HEADER ==================== */
+
+/**
+ * Header section with title and close button
+ * Gradient background (purple/pink)
+ * White text
+ * Border bottom separates from content
+ */
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  border-bottom: 1px solid #e5e7eb;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  flex-shrink: 0;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ==================== CLOSE BUTTON ==================== */
+
+/**
+ * Close button (X) in top right of modal
+ * Circular hover effect with background color
+ * Smooth rotation animation on hover
+ */
+.close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  flex-shrink: 0;
+}
+
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(90deg);
+}
+
+.close-btn:active {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* ==================== MODAL FOOTER ==================== */
+
+/**
+ * Footer section with close button
+ * Light gray background
+ * Padding and gap for button
+ */
+.modal-footer {
+  padding: 16px 24px;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  background: #f9fafb;
+  flex-shrink: 0;
+}
+
+.close-modal-btn {
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+.close-modal-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+}
+
+.close-modal-btn:active {
+  transform: translateY(0);
+}
+
+/* ==================== CONTENT AREA ==================== */
+
+/**
+ * Main content area that grows to fill available space
+ * Scrollable when content exceeds max height
+ * Flex: 1 makes it flexible and scrollable
+ */
+.resumes-list {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: white;
+}
+
+/* ==================== RESUME ITEM CARD ==================== */
+
+/**
+ * Individual resume card in the list
+ * Contains: icon, info, delete button
+ * Flex layout for horizontal arrangement
+ * Hover effect with elevation and color change
+ */
+.resume-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 16px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  gap: 12px;
+}
+
+.resume-item:hover {
+  background: #f3f4f6;
+  border-color: #667eea;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1);
+  transform: translateX(4px);
+}
+
+/* ==================== RESUME INFO SECTION ==================== */
+
+/**
+ * Left side of resume item containing icon and details
+ * Flex layout with icon and text
+ * flex: 1 makes it grow and take available space
+ */
+.resume-info {
+  display: flex;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Resume Icon Wrapper */
+.resume-icon {
+  color: #667eea;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #ede9fe 0%, #f3e8ff 100%);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.resume-item:hover .resume-icon {
+  transform: scale(1.1);
+}
+
+/* Resume Details */
+.resume-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.resume-details h3 {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  color: #1a202c;
+  font-weight: 700;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ==================== RESUME METADATA ==================== */
+
+/**
+ * Badges showing resume type, date, and word count
+ * Flex wrap allows wrapping on small screens
+ * Color-coded badges for easy identification
+ */
+.resume-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+  align-items: center;
+}
+
+/* Badge Styles */
+.source-badge,
+.date-badge,
+.text-length {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  white-space: nowrap;
+  font-family: inherit;
+}
+
+/* Source Badge (PDF or Manual) */
+.source-badge {
+  background: #3b82f6;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.2);
+}
+
+/* Date Badge */
+.date-badge {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.2);
+}
+
+.date-badge svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Word Count Badge */
+.text-length {
+  background: linear-gradient(135deg, #8b5cf6 0%, #a78bfa 100%);
+  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.2);
+}
+
+/* ==================== RESUME PREVIEW TEXT ==================== */
+
+/**
+ * Text preview of resume content
+ * Limited to 2 lines with ellipsis
+ * Gray color to distinguish from title
+ */
+.resume-preview {
+  margin: 0;
+  color: #6b7280;
+  font-size: 13px;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ==================== DELETE BUTTON ==================== */
+
+/**
+ * Delete button on right side of resume item
+ * Red color with trash icon
+ * Hover effect with scale and color change
+ * Disabled state during deletion
+ */
+.delete-btn {
+  padding: 8px;
+  background: #fee2e2;
+  color: #dc2626;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  font-family: inherit;
+  box-shadow: 0 2px 6px rgba(220, 38, 38, 0.1);
+}
+
+.delete-btn:hover:not(:disabled) {
+  background: #fecaca;
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.2);
+}
+
+.delete-btn:active:not(:disabled) {
+  transform: scale(0.95);
+}
+
+.delete-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ==================== LOADING STATE ==================== */
+
+/**
+ * Spinner animation for loading states
+ * Continuous 360° rotation
+ */
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+.spinner-small {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/**
+ * Loading centered content
+ * Shows spinner and text when fetching resumes
+ */
+.loading-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  gap: 16px;
+  color: #6b7280;
+  flex: 1;
+}
+
+.loading-center p {
+  margin: 0;
+  font-weight: 500;
+  font-size: 16px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.loading-center svg {
+  color: #667eea;
+}
+
+/* ==================== EMPTY STATE ==================== */
+
+/**
+ * Message shown when user has no resumes yet
+ * Centered with icon and helpful text
+ */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  gap: 12px;
+  color: #9ca3af;
+  flex: 1;
+}
+
+.empty-state svg {
+  color: #d1d5db;
+  margin-bottom: 8px;
+}
+
+.empty-state p {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #6b7280;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.empty-state small {
+  margin: 0;
+  font-size: 14px;
+  color: #9ca3af;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ==================== ERROR MESSAGE ==================== */
+
+/**
+ * Error notification banner
+ * Red color with warning icon
+ * Slide down animation on appear
+ * Margin and padding for visibility
+ */
+.error-message {
+  margin: 16px;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+  color: #991b1b;
+  border: 1px solid #fca5a5;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  animation: slideDown 0.3s ease;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==================== CUSTOM SCROLLBAR ==================== */
+
+/**
+ * Beautiful custom scrollbar for resume list
+ * Subtle gray color that darkens on hover
+ * Smooth rounded edges
+ */
+.resumes-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.resumes-list::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 10px;
+}
+
+.resumes-list::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #cbd5e1 0%, #94a3b8 100%);
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.resumes-list::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #94a3b8 0%, #64748b 100%);
+}
+
+/* ==================== RESPONSIVE DESIGN ==================== */
+
+/**
+ * Tablet screens (768px and below)
+ * Modal becomes full-screen from bottom
+ * Adjusted spacing and font sizes
+ */
+@media (max-width: 768px) {
+  .resume-manager-modal {
+    max-width: 100%;
+    max-height: 100vh;
+    border-radius: 12px 12px 0 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .modal-header {
+    padding: 16px;
+  }
+
+  .modal-header h2 {
+    font-size: 18px;
+  }
+
+  .close-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 20px;
+  }
+
+  .resume-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .delete-btn {
+    align-self: flex-end;
+  }
+
+  .resume-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .resume-details h3 {
+    font-size: 15px;
+  }
+
+  .modal-footer {
+    padding: 12px 16px;
+  }
+
+  .close-modal-btn {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+}
+
+/**
+ * Mobile screens (480px and below)
+ * Further reduced spacing and sizes
+ * Single column layout
+ * Optimized for small screens
+ */
+@media (max-width: 480px) {
+  .resume-manager-overlay {
+    padding: 0;
+  }
+
+  .resume-manager-modal {
+    border-radius: 0;
+    max-height: 100vh;
+  }
+
+  .modal-header {
+    padding: 12px 16px;
+  }
+
+  .modal-header h2 {
+    font-size: 16px;
+  }
+
+  .close-btn {
+    width: 24px;
+    height: 24px;
+    font-size: 18px;
+  }
+
+  .resumes-list {
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .resume-item {
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .resume-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .resume-icon svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .resume-details h3 {
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+
+  .resume-meta {
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+
+  .source-badge,
+  .date-badge,
+  .text-length {
+    padding: 2px 8px;
+    font-size: 11px;
+  }
+
+  .date-badge svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .resume-preview {
+    font-size: 12px;
+    -webkit-line-clamp: 1;
+  }
+
+  .delete-btn {
+    padding: 6px;
+  }
+
+  .delete-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .loading-center {
+    padding: 40px 16px;
+  }
+
+  .loading-center p {
+    font-size: 14px;
+  }
+
+  .loading-center svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  .empty-state {
+    padding: 40px 16px;
+  }
+
+  .empty-state svg {
+    width: 40px;
+    height: 40px;
+  }
+
+  .empty-state p {
+    font-size: 16px;
+  }
+
+  .empty-state small {
+    font-size: 12px;
+  }
+
+  .error-message {
+    margin: 12px;
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .modal-footer {
+    padding: 10px 12px;
+  }
+
+  .close-modal-btn {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+}
+
+/**
+ * Extra small screens (320px and below)
+ * Minimal spacing
+ * Text truncation for very small space
+ */
+@media (max-width: 320px) {
+  .modal-header h2 {
+    font-size: 14px;
+  }
+
+  .resume-details h3 {
+    font-size: 13px;
+  }
+
+  .source-badge,
+  .date-badge,
+  .text-length {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+
+  .resume-preview {
+    font-size: 11px;
+    -webkit-line-clamp: 1;
+  }
+
+  .close-modal-btn {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
+
+/* ==================== ACCESSIBILITY ==================== */
+
+/**
+ * Focus states for keyboard navigation
+ * Visible outline for better accessibility
+ */
+.close-btn:focus,
+.delete-btn:focus,
+.close-modal-btn:focus {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}
+
+/**
+ * Reduce motion for users who prefer it
+ */
+@media (prefers-reduced-motion: reduce) {
+  .resume-manager-overlay,
+  .resume-manager-modal,
+  .error-message,
+  .resume-item,
+  .delete-btn,
+  .close-btn,
+  .close-modal-btn {
+    animation: none !important;
+    transition: none !important;
+  }
+}
