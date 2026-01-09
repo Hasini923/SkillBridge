@@ -786,6 +786,11 @@ def delete_resume(user_id, resume_id):
         return jsonify({"message": "Deleted"}), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+    
+@app.route("/", methods=["GET"])
+def health_check():
+    return {"status": "SkillBridge backend running"}, 200
+
 
 @app.route("/get-resumes/<user_id>", methods=["GET"])
 def get_resumes(user_id):
